@@ -18,7 +18,6 @@ import model.Product;
  *
  * @author LAPTOP D&N
  */
-
 public class DAO {
     Connection conn = null;
     PreparedStatement ps = null;
