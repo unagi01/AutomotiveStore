@@ -14,7 +14,7 @@
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="home">HUY SHOP</a>
+                <a class="navbar-brand" href="home">Hieu's AUTOMOTIVE</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -69,7 +69,7 @@
         </nav>
         <section class="jumbotron text-center">
             <div class="container">
-                <h1 class="jumbotron-heading">ONE SHOT ONE KILL</h1>
+                <h1 class="jumbotron-heading">UY TÍN SỐ 1 VIỆT NAM</h1>
                 
             </div>
         </section>
