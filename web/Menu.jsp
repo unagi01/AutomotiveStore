@@ -67,9 +67,9 @@
                 </div>
             </div>
         </nav>
-        <section class="jumbotron text-center">
+        <section class="jumbotron text-center" style="background-image: url('https://cdn3.vectorstock.com/i/1000x1000/17/97/car-logo-in-simple-line-graphic-design-template-vector-24431797.jpg')">
             <div class="container">
-                <h1 class="jumbotron-heading">UY TÍN SỐ 1 VIỆT NAM</h1>
+                <h1 class="jumbotron-heading" style="color: #D4AF37">UY TÍN SỐ 1 VIỆT NAM</h1>
                 
             </div>
         </section>

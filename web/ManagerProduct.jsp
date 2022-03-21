@@ -25,6 +25,10 @@
                 width: 200px;
                 height: 120px;
             }
+            
+            body{
+                background-image: url('https://images.hdqwalls.com/wallpapers/amazing-sport-car-artwork-rd.jpg');
+            }
         </style>
     <body>
         <div class="container">
@@ -35,8 +39,9 @@
                             <h2>Manage <b>Product</b></h2>
                         </div>
                         <div class="col-sm-6">
+                            <a href="home" class="btn btn-success"><span>Return Home</span></a>
                             <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
                         </div>
                     </div>
                 </div>
