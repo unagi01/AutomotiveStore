@@ -188,7 +188,7 @@ public class DAO {
     }
     
     public Account login(String user, String pass) {
-        String query = "select * from account\n"
+        String query = "select * from accounts \n"
                 + "where [user] = ?\n"
                 + "and pass = ?";
         try {
@@ -210,7 +210,7 @@ public class DAO {
     }
         
         public Account checkExits(String user){
-            String query = "select * from account\n"
+            String query = "select * from accounts \n"
                 + "where [user] = ?\n";
             try {
                 conn = new DBContext().connection;
@@ -230,7 +230,7 @@ public class DAO {
         }
         
     public void signUp(String user, String pass) {
-        String query = "insert into account\n"
+        String query = "insert into accounts \n"
                 + "values(?,?,0,0)";
         try {
             conn = new DBContext().connection;
