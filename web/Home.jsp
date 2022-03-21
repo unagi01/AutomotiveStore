@@ -13,46 +13,50 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <style>
-            .pagination {
-                display: inline-block;
-            }
-            .pagination a {
-                color: black;
-                font-size: 22px;
-                float: left;
-                padding: 8px 16px;
-                text-decoration: none;
-            }
-            .pagination a.active {
-                background-color: #4CAF50;
-                color: white;
-            }
-            .pagination a:hover:not(.active) {
-                background-color: chocolate;
-            }
-        </style>
+        .pagination {
+            display: inline-block;
+        }
+        .pagination a {
+            color: black;
+            font-size: 22px;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .pagination a:hover:not(.active) {
+            background-color: chocolate;
+        }
+
+        body{
+            background-image: url('https://images.hdqwalls.com/wallpapers/amazing-sport-car-artwork-rd.jpg');
+        }
+    </style>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="home">Gara</a></li>
-                            <li class="breadcrumb-item"><a href="#">Hãng xe</a></li>
-                            
-                        </ol>
-                    </nav>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="home">Gara</a></li>
+                                <li class="breadcrumb-item"><a href="#">Hãng xe</a></li>
+
+                            </ol>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="row">
+            <div class="container">
+                <div class="row">
                 <jsp:include page="Left.jsp"></jsp:include>
-                 
-                <div class="col-sm-9">
-                    <div class="row">
-                       
+
+                    <div class="col-sm-9">
+                        <div class="row">
+
                         <c:forEach items="${listP}" var="o">
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card">
@@ -72,19 +76,19 @@
                                 </div>
                             </div>
                         </c:forEach>
-                        
+
                     </div>
                     <div class="pagination">
-                           
-                            <c:forEach begin="1" end="${endP}" var="i">
-                                <a class=" ${tag==i?"active":""}" href="home?index=${i}">${i}</a>
-                            </c:forEach>
-                            </div>
+
+                        <c:forEach begin="1" end="${endP}" var="i">
+                            <a class=" ${tag==i?"active":""}" href="home?index=${i}">${i}</a>
+                        </c:forEach>
+                    </div>
                 </div>
 
             </div>
         </div>
-                
+
         <!-- Footer -->
         <jsp:include page="Footer.jsp"></jsp:include>
     </body>

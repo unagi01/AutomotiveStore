@@ -47,6 +47,10 @@
                 width: 100% !important;
                 height: auto !important;
             }
+
+            body{
+                background-image: url('https://images.hdqwalls.com/wallpapers/amazing-sport-car-artwork-rd.jpg');
+            }
         </style>
     </head>
     <body>
@@ -54,14 +58,14 @@
             <div class="container">
                 <div class="row">
                 <jsp:include page="Left.jsp"></jsp:include>
-                <div class="col-sm-9">
-                    <div class="container">
-                        <div class="card">
-                            <div class="row">
-                                <aside class="col-sm-5 border-right">
-                                    <article class="gallery-wrap"> 
-                                        <div class="img-big-wrap">
-                                            <div> <a href="#"><img src="${detail.image}"></a></div>
+                    <div class="col-sm-9">
+                        <div class="container">
+                            <div class="card">
+                                <div class="row">
+                                    <aside class="col-sm-5 border-right">
+                                        <article class="gallery-wrap"> 
+                                            <div class="img-big-wrap">
+                                                <div> <a href="#"><img src="${detail.image}"></a></div>
                                         </div> <!-- slider-product.// -->
                                         <div class="img-small-wrap">
                                         </div> <!-- slider-nav.// -->
@@ -112,6 +116,6 @@
                 </div>
             </div>
         </div>
-       <jsp:include page="Footer.jsp"></jsp:include>
+        <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>

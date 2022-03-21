@@ -12,7 +12,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+        <style>
+            body{
+                background-image: url('https://images.hdqwalls.com/wallpapers/amazing-sport-car-artwork-rd.jpg');
+            }
+        </style>
     </head>
 
     <body>
@@ -62,7 +66,7 @@
                                                         <!--<a href="cart?id=${o.id}"><button class="btnAdd">+</button></a>-->
                                                     </td>
                                                             <td class="align-middle"><a href="remove?id=${o.id}" class="text-dark">
-                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                                    <button type="button" class="btn btn-danger" onclick="return confirm('Are you sure want to delete this product from cart?')">Delete</button>
                                                         </a>
                                                     </td>
                                                 </tr> 
