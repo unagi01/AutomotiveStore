@@ -18,20 +18,20 @@ import model.Product;
  *
  * @author LAPTOP D&N
  */
-
 public class DAO {
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
-    public List<Product> getAllProduct(){
+
+    public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
         String query = "select * from product";
         try {
             conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 list.add(new Product(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -40,34 +40,34 @@ public class DAO {
                         rs.getString(6)));
             }
         } catch (Exception e) {
-        }   
+        }
         return list;
     }
-    
-    public List<Category> getAllCategory(){
+
+    public List<Category> getAllCategory() {
         List<Category> list = new ArrayList<>();
         String query = "select * from Category";
         try {
             conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 list.add(new Category(rs.getString(1),
                         rs.getString(2)));
             }
         } catch (Exception e) {
-        }   
+        }
         return list;
     }
-        
-    public Product getLast(){
+
+    public Product getLast() {
         String query = "select top 1 * from product\n"
-                        + "order by id desc";
+                + "order by id desc";
         try {
             conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return new Product(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -77,15 +77,15 @@ public class DAO {
             }
         } catch (Exception e) {
         }
-    return null;
-    } 
-    
+        return null;
+    }
+
     public List<Product> getProductByCID(String cid) {
         List<Product> list = new ArrayList<>();
         String query = "select * from product\n"
                 + "where cateID = ?";
         try {
-            conn = new DBContext().connection; 
+            conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
             ps.setString(1, cid);
             rs = ps.executeQuery();
@@ -102,11 +102,26 @@ public class DAO {
         return list;
     }
 
+    public List<Account> getAllAccount() {
+        List<Account> list = new ArrayList<>();
+        String query = "select * from accounts";
+        try {
+            conn = new DBContext().connection;
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public Product getProductByPID(String id) {
         String query = "select * from product\n"
                 + "where id = ?";
         try {
-            conn = new DBContext().connection; 
+            conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
             ps.setString(1, id);
             rs = ps.executeQuery();
@@ -122,15 +137,15 @@ public class DAO {
         }
         return null;
     }
-    
-    public Product getFirst(){
+
+    public Product getFirst() {
         String query = "select top 1 * from product\n"
-                        + "order by id asc";
+                + "order by id asc";
         try {
             conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return new Product(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -140,13 +155,13 @@ public class DAO {
             }
         } catch (Exception e) {
         }
-    return null;
+        return null;
     }
-    
+
     public List<Product> searchByName(String txtSearch) {
         List<Product> list = new ArrayList<>();
-        String query = "select * from  product\n" 
-                        +"where [name] like ?";
+        String query = "select * from  product\n"
+                + "where [name] like ?";
         try {
             conn = new DBContext().connection; //mo ket noi voi sql
             ps = conn.prepareStatement(query);
@@ -164,8 +179,8 @@ public class DAO {
         }
         return list;
     }
-    
-        public List<Product> getProductBySellID(int id) {
+
+    public List<Product> getProductBySellID(int id) {
         List<Product> list = new ArrayList<>();
         String query = "select * from product\n"
                 + "where sell_id = ?";
@@ -186,7 +201,7 @@ public class DAO {
         }
         return list;
     }
-    
+
     public Account login(String user, String pass) {
         String query = "select * from accounts \n"
                 + "where [user] = ?\n"
@@ -208,27 +223,27 @@ public class DAO {
         }
         return null;
     }
-        
-        public Account checkExits(String user){
-            String query = "select * from accounts \n"
+
+    public Account checkExits(String user) {
+        String query = "select * from accounts \n"
                 + "where [user] = ?\n";
-            try {
-                conn = new DBContext().connection;
-                ps = conn.prepareStatement(query);
-                ps.setString(1, user);
-                rs = ps.executeQuery();
-                while (rs.next()) {
+        try {
+            conn = new DBContext().connection;
+            ps = conn.prepareStatement(query);
+            ps.setString(1, user);
+            rs = ps.executeQuery();
+            while (rs.next()) {
                 return new Account(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
                         rs.getInt(5));
             }
-            } catch (Exception e) {
-            }
-            return null;
+        } catch (Exception e) {
         }
-        
+        return null;
+    }
+
     public void signUp(String user, String pass) {
         String query = "insert into accounts \n"
                 + "values(?,?,0,0)";
@@ -240,20 +255,20 @@ public class DAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
-    }    
-    
-    public void deleteProduct(String pid){
+    }
+
+    public void deleteProduct(String pid) {
         String query = "delete from product\n"
-                + "where id = ?"; 
+                + "where id = ?";
         try {
             conn = new DBContext().connection;
-            ps = conn.prepareStatement(query);  
+            ps = conn.prepareStatement(query);
             ps.setString(1, pid);
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
-    
+
     public void insertProduct(String name, String image, String price,
             String title, String description, String category, int sid) {
         String query = "INSERT [dbo].[product] \n"
@@ -273,7 +288,7 @@ public class DAO {
         } catch (Exception e) {
         }
     }
-    
+
     public void editProduct(String name, String image, String price,
             String title, String description, String category, String pid) {
         String query = "update product\n"
@@ -298,33 +313,32 @@ public class DAO {
         } catch (Exception e) {
         }
     }
-    
-    public int getTotalProduct(){
+
+    public int getTotalProduct() {
         String query = "select count(*) from product";
         try {
             conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (Exception e) {
         }
         return 0;
     }
-    
-    
-    public List<Product> pagingProduct(int index){
-          List<Product> list = new ArrayList<>();
-          String query = "select * from product \n" 
-                  + "order by id \n" 
-                  + "offset ? rows fetch next 6 rows only";
-          try {
+
+    public List<Product> pagingProduct(int index) {
+        List<Product> list = new ArrayList<>();
+        String query = "select * from product \n"
+                + "order by id \n"
+                + "offset ? rows fetch next 6 rows only";
+        try {
             conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
-            ps.setInt(1, (index-1)*6);
+            ps.setInt(1, (index - 1) * 6);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 list.add(new Product(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -336,51 +350,80 @@ public class DAO {
         }
         return list;
     }
-    
-     public int getTotalAccount(){
-         String query = "select count(*) from account";
+
+    public int getTotalAccount() {
+        String query = "select count(*) from accounts";
         try {
             conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (Exception e) {
         }
         return 0;
-     }
-     
-      public List<Account> pagingAccount(int index){
-          List<Account> list = new ArrayList<>();
-          String query = "select * from account \n" 
-                  + "order by id \n" 
-                  + "offset ? rows fetch next 6 rows only";
-          try {
+    }
+
+    public List<Account> pagingAccount(int index) {
+        List<Account> list = new ArrayList<>();
+        String query = "select * from accounts \n"
+                + "order by id \n"
+                + "offset ? rows fetch next 6 rows only";
+        try {
             conn = new DBContext().connection;
             ps = conn.prepareStatement(query);
-            ps.setInt(1, (index-1)*6);
+            ps.setInt(1, (index - 1) * 6);
             rs = ps.executeQuery();
-            while(rs.next()){
-                list.add(new Account(rs.getInt(1), 
-                        rs.getString(2), 
-                        rs.getString(3), 
-                        rs.getInt(4), 
+            while (rs.next()) {
+                list.add(new Account(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
                         rs.getInt(5)));
             }
-          } catch (Exception e) {
-          }
-          return list;
-      }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
+    public Account getAccountByPID(String id) {
+        String query = "select * from accounts \n"
+                + "where uID = ?";
+        try {
+            conn = new DBContext().connection;
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Account(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getInt(5));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
-
+    public void deleteAccount(String pid) {
+        String query = "delete from accounts \n"
+                + "where id = ?";
+        try {
+            conn = new DBContext().connection;
+            ps = conn.prepareStatement(query);
+            ps.setString(1, pid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
     public static void main(String[] args) {
         DAO dao = new DAO();
         int count = dao.getTotalAccount();
         System.out.println(count);
-        
-        
+
     }
 
 }

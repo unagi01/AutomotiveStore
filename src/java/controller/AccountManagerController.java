@@ -7,19 +7,22 @@ package controller;
 
 import dal.DAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
+import model.Category;
 
 /**
  *
- * @author LAPTOP D&N
+ * @author User
  */
-@WebServlet(name = "DeleteServlet", urlPatterns = {"/delete"})
-public class DeleteServlet extends HttpServlet {
+@WebServlet(name = "AccountManagerController", urlPatterns = {"/AccountManagerController"})
+public class AccountManagerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +36,16 @@ public class DeleteServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String pid = request.getParameter("pid");
+         HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        int id = a.getId();
         DAO dao = new DAO();
-        dao.deleteProduct(pid);
-        response.sendRedirect("manager");
+        List<Account> list = dao.getAllAccount();
+        List<Category> listC = dao.getAllCategory();
+
+        request.setAttribute("listCC", listC);
+        request.setAttribute("listP", list);
+        request.getRequestDispatcher("AccountManager.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,7 +60,16 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+         HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        DAO dao = new DAO();
+        List<Account> list = dao.getAllAccount();
+        List<Category> listC = dao.getAllCategory();
+
+        request.setAttribute("listCC", listC);
+        request.setAttribute("listP", list);
+        request.getRequestDispatcher("AccountManager.jsp").forward(request, response);
     }
 
     /**

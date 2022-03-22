@@ -36,12 +36,11 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Product</b></h2>
+                            <h2>Manage <b>Account</b></h2>
                         </div>
                         <div class="col-sm-6">
                             <a href="home" class="btn btn-success"><span>Return Home</span></a>
-                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
                         </div>
                     </div>
                 </div>
@@ -55,10 +54,9 @@
                                 </span>
                             </th>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Actions</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Role</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,14 +69,19 @@
                                     </span>
                                 </td>
                                 <td>${o.id}</td>
-                                <td>${o.name}</td>
+                                <td>${o.user}</td>
+                                <td>${o.pass}</td>
                                 <td>
-                                    <img src="${o.image}">
+                                    <c:if test="${o.isSell == 1}">
+                                        <p>Seller</p>
+                                    </c:if>
+                                    <c:if test="${o.isAdmin == 1}">
+                                        <p>Admin</p>
+                                    </c:if>
                                 </td>
-                                <td>${o.price} $</td>
                                 <td>
-                                    <a href="editProduct?pid=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="delete?pid=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" onclick="return confirm('Are you sure want to delete this product from product?')">&#xE872;</i></a>
+                                    <a href="EditAccountController?pid=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="DeleteAccountServlet?pid=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" onclick="return confirm('Are you sure want to delete this account?')">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -107,7 +110,7 @@
                 <div class="modal-content">
                     <form action="add" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
+                            <h4 class="modal-title">Add Account</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
@@ -116,7 +119,7 @@
                                 <input name="name" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Password</label>
                                 <input name="image" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
@@ -156,11 +159,11 @@
                 <div class="modal-content">
                     <form action="edit" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Edit Product</h4>
+                            <h4 class="modal-title">Edit Account</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <div class="form-group">
+                            <div class="form-group">ì
                                 <label>Name</label>
                                 <input value="${detail.name}" name="name" type="text" class="form-control" required>
                             </div>

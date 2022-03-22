@@ -81,7 +81,7 @@
                     <div class="pagination">
 
                         <c:forEach begin="1" end="${endP}" var="i">
-                            <a class=" ${tag==i?"active":""}" href="home?index=${i}">${i}</a>
+                            <a class=" ${tag==i?"active":""}" href="home?index=${i}" style="color: white">${i}</a>
                         </c:forEach>
                     </div>
                 </div>
